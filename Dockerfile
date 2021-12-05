@@ -1,0 +1,16 @@
+FROM node:14.18
+
+ARG MY_ORIGIN_URL
+
+ENV PORT=8080
+ENV CORSANYWHERE_WHITELIST=${MY_ORIGIN_URL}
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm ci
+
+EXPOSE 8080
+
+CMD ["node", "server.js"]
